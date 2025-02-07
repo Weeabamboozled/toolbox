@@ -10,9 +10,20 @@ Unblock-File -Path $ModulePath
 Set-ExecutionPolicy Bypass -Scope Process
 
 # Import the module and run the function
-Import-Module $ModulePath
-checkAdministrator
-Pause
+Try {
+    # Attempt to import the module
+    Import-Module $ModulePath -ErrorAction Stop
+
+    # Attempt to call the function
+    checkAdministrator
+}
+Catch {
+    # Catch the error and display it
+    Write-Host "An error occurred: $($_.Exception.Message)" -ForegroundColor Red
+
+    # Pause to review the error
+    Read-Host "Press Enter to exit"
+}
 
 function Show-Menu {
     Clear-Host
