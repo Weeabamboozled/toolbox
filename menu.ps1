@@ -3,9 +3,14 @@ Set-ExecutionPolicy Bypass -Scope Process
 $ModuleUrl = "https://raw.githubusercontent.com/Weeabamboozled/toolbox/main/util.modules/checkAdministrator.psm1"
 $ModulePath = "$env:TEMP\checkAdministrator.psm1"
 Invoke-WebRequest -Uri $ModuleUrl -OutFile $ModulePath
-Import-Module $ModulePath
-Pause
+# Unblock the file if it's downloaded from the internet
+Unblock-File -Path $ModulePath
 
+# Temporarily bypass the execution policy and import the module
+Set-ExecutionPolicy Bypass -Scope Process
+
+# Import the module and run the function
+Import-Module $ModulePath
 checkAdministrator
 Pause
 
