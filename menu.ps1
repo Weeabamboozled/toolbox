@@ -7,7 +7,7 @@ function Import-GitHubModule {
     $Url = "https://raw.githubusercontent.com/$Repo/main/$ModulePath"
     
     # Replace with your GitHub Personal Access Token (or load it securely from environment/secrets)
-    $GitHubPAT =  
+    $GitHubPAT =  $env:GIT_PAT
 
     # Prepare headers for authentication
     $Headers = @{
