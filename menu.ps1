@@ -1,3 +1,5 @@
+Set-ExecutionPolicy Bypass -Scope Process
+
 $ModuleUrl = "https://raw.githubusercontent.com/Weeabamboozled/toolbox/main/util.modules/checkAdministrator.psm1"
 $ModulePath = "$env:TEMP\checkAdministrator.psm1"
 Invoke-WebRequest -Uri $ModuleUrl -OutFile $ModulePath
