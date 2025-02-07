@@ -1,4 +1,4 @@
-Import-Module "util.modules\checkAdministrator"
+Import-Module "https://raw.githubusercontent.com/Weeabamboozled/toolbox/main/util.modules/checkAdministrator.psm1"
 function Show-Menu {
     Clear-Host
     Write-Host "========================="
