@@ -1,4 +1,9 @@
-Import-Module "https://raw.githubusercontent.com/Weeabamboozled/toolbox/main/util.modules/checkAdministrator.psm1"
+$checkAdministratorURL = "https://raw.githubusercontent.com/Weeabamboozled/toolbox/main/util.modules/checkAdministrator.psm1"
+$checkAdministratorPath = "$env:TEMP\checkAdministrator/psm1"
+Invoke-WebRequest -Uri $checkAdministratorURL -OutFile $checkAdministratorPath
+
+Import-Module $checkAdministratorPath
+
 function Show-Menu {
     Clear-Host
     Write-Host "========================="
