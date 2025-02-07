@@ -30,8 +30,6 @@ function Show-Menu {
     Write-Host "3. Exit"
     Write-Host "========================="
 }
-checkAdministrator
-pause
 
 while ($true) {
     Show-Menu
