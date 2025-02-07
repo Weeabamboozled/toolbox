@@ -1,3 +1,4 @@
+Import-Module "util.modules\checkAdministrator"
 function Show-Menu {
     Clear-Host
     Write-Host "========================="
