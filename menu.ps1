@@ -6,6 +6,9 @@ Invoke-WebRequest -Uri $ModuleUrl -OutFile $ModulePath
 Import-Module $ModulePath
 Pause
 
+checkAdministrator
+Pause
+
 function Show-Menu {
     Clear-Host
     Write-Host "========================="
