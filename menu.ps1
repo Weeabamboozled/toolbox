@@ -16,7 +16,7 @@ while ($true) {
     switch ($choice) {
         "1" { Get-ComputerInfo; Pause }
         "2" { Test-Connection google.com -Count 4; Pause }
-        "3" { Write-Host "Exiting..."; break }
+        "3" { Write-Host "Exiting..."; exit }
         default { Write-Host "Invalid option, please try again."; Pause }
     }
 }
