@@ -1,7 +1,18 @@
-$ModuleUrl = "https://raw.githubusercontent.com/Weeabamboozled/toolbox/main/util.modules/checkAdministrator.psm1"
+# URL to the raw GitHub file containing the checkAdministrator function
+$GitHubUrl = "https://raw.githubusercontent.com/Weeabamboozled/toolbox/main/modules/checkAdministrator.psm1"
+
+# Path to save the module temporarily
 $ModulePath = "$env:TEMP\checkAdministrator.psm1"
-Invoke-WebRequest -Uri $ModuleUrl -OutFile $ModulePath
+
+# Download the module
+Invoke-WebRequest -Uri $GitHubUrl -OutFile $ModulePath
+
+# Import the module to make the function available
 Import-Module $ModulePath
+
+# Now you can call the checkAdministrator function
+checkAdministrator
+Pause
 
 function Show-Menu {
     Clear-Host
