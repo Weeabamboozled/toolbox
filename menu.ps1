@@ -11,17 +11,12 @@ Set-ExecutionPolicy Bypass -Scope Process
 
 # Import the module and run the function
 Try {
-    # Attempt to import the module
     Import-Module $ModulePath -ErrorAction Stop
-
-    # Attempt to call the function
     checkAdministrator
 }
 Catch {
-    # Catch the error and display it
     Write-Host "An error occurred: $($_.Exception.Message)" -ForegroundColor Red
-
-    # Pause to review the error
+    Write-Host "Last error details: $($Error[0])" -ForegroundColor Red
     Read-Host "Press Enter to exit"
 }
 
