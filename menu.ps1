@@ -3,11 +3,18 @@ function Import-GitHubModule {
         [string]$ModulePath
     )
 
+    # Fetch the GitHub PAT from environment variables (passed from the Worker)
+    $GitHubPAT = $env:GITHUB_PAT
+    
+    # Ensure the PAT is set, otherwise exit with an error
+    if (-not $GitHubPAT) {
+        Write-Host "GitHub Personal Access Token (PAT) is not set. Please make sure it is passed from the Worker."
+        return
+    }
+
+    # Define the repository and the URL to fetch the module
     $Repo = "Weeabamboozled/toolbox"
     $Url = "https://raw.githubusercontent.com/$Repo/main/$ModulePath"
-    
-    # Replace with your GitHub Personal Access Token (or load it securely from environment/secrets)
-    $GitHubPAT =  $env:GIT_PAT
 
     # Prepare headers for authentication
     $Headers = @{
@@ -16,15 +23,21 @@ function Import-GitHubModule {
     }
 
     Try {
-        # Download and Import the module using authentication
+        # Attempt to download and import the module using the GitHub PAT for authentication
         Invoke-WebRequest -Uri $Url -Headers $Headers -OutFile "$env:TEMP\$ModulePath"
+        
+        # Import the module after downloading it
         Import-Module "$env:TEMP\$ModulePath" -Force
+        
+        # Output success message
         Write-Host "Loaded module: $ModulePath" -ForegroundColor Green
     }
     Catch {
+        # Handle failure and display the error
         Write-Host "Failed to load module: $ModulePath" -ForegroundColor Red
     }
 }
+
 
 
 Import-GitHubModule "util.modules/checkAdministrator.psm1"
