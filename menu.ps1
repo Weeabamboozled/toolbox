@@ -5,17 +5,27 @@ function Import-GitHubModule {
 
     $Repo = "Weeabamboozled/toolbox"
     $Url = "https://raw.githubusercontent.com/$Repo/main/$ModulePath"
-    $TempPath = "$env:TEMP\" + [System.IO.Path]::GetFileName($ModulePath)
+    
+    # Replace with your GitHub Personal Access Token (or load it securely from environment/secrets)
+    $GitHubPAT =  
+
+    # Prepare headers for authentication
+    $Headers = @{
+        "Authorization" = "Bearer $GitHubPAT"
+        "User-Agent"    = "PowerShellScript"
+    }
 
     Try {
-        Invoke-RestMethod -Uri $Url -OutFile $TempPath
-        Import-Module $TempPath -Force
+        # Download and Import the module using authentication
+        Invoke-WebRequest -Uri $Url -Headers $Headers -OutFile "$env:TEMP\$ModulePath"
+        Import-Module "$env:TEMP\$ModulePath" -Force
         Write-Host "Loaded module: $ModulePath" -ForegroundColor Green
     }
     Catch {
         Write-Host "Failed to load module: $ModulePath" -ForegroundColor Red
     }
 }
+
 
 Import-GitHubModule "util.modules/checkAdministrator.psm1"
 #Import-GitHubModule "Modules/SystemTools.psm1"
