@@ -11,6 +11,8 @@ function Show-Menu {
     Write-Host "========================="
 }
 checkAdministrator
+pause
+
 while ($true) {
     Show-Menu
     $choice = Read-Host "Select an option (1-3)"
