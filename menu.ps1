@@ -1,3 +1,5 @@
+Import-Module .\util.modules\checkAdministrator.psm1
+
 function Show-Menu {
     Clear-Host
     Write-Host "========================="
@@ -8,7 +10,7 @@ function Show-Menu {
     Write-Host "3. Exit"
     Write-Host "========================="
 }
-
+checkAdministrator
 while ($true) {
     Show-Menu
     $choice = Read-Host "Select an option (1-3)"
